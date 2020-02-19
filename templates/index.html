@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    <!-- Mars Scrape -->
+    <!--Latest Mars News-->
+    <div class="row" id="mars-news">
+      <div class="container-fluid">
+        <div class="col-md-12">
+          <h2 class="heading">Latest Mars News</h2>
+          <h4 class="heading">{{mars.news_title}}</h4>
+          <p><small>{{mars.news_p}}</small></p>
+        </div>
+      </div>
+    </div><!--mars-news-->
+
+    <!--Featured Mars Image, Current Weather, Mars Facts-->
+    <div class="container-fluid">
+      <div class="row" id="featured-mars-image">
+        <div class="col-md-7">
+          <h2>Featured Mars Image</h2>
+          <img src="{{mars.featured_image_url}}" alt="featured image" style="width:70%">
+        </div><!--col-md-8-->
+        <div class="col-md-5">
+          <div class="row" id="current-weather-on-mars">
+            <ul>
+              <h2>Current Weather on Mars</h2>
+              <h4 class="heading">{{mars.mars_weather}}</h4>
+            </ul>
+          </div><!--current-weather-on-mars-->
+
+          <div class="row" id="mars-facts">
+            <ul>
+              <h2>Mars Facts</h2>
+              <!--https://stackoverflow.com/questions/3206344/passing-html-to-template-using-flask-jinja2-->
+              {{mars.mars_facts|safe}}
+              <a href="{{mars.mars_facts}}"></a>
+            </ul>
+          </div><!--row mars-facts-->
+        </div><!--col-md-4-->
+      </div>
+    </div>
+
+    <!--Mars Hemispheres-->
+    <h2 class="text-center">Mars Hemispheres</h2>
+    {% for hemisphere in mars.hemisphere_image_urls %}
+      <div class="col-md-6">
+        <div class="thumbnail">
+        <img src="{{hemisphere.img_url}}">
+          <div class="caption">
+            {{hemisphere.Title}}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    
+
+  </div>
+</body>
+
+</html>
